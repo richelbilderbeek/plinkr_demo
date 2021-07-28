@@ -32,5 +32,5 @@ jobs:
         run: singularity inspect --deffile plinkr_v0.15.1.sif
 
       - name: Run container
-        run: singularity run plinkr_v0.15.1.sif sh -c "Rscript demo_container.R"
+        run: singularity exec plinkr_v0.15.1.sif sh -c "Rscript demo_container.R"
 
