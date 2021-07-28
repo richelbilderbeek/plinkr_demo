@@ -2,10 +2,10 @@ on:
   push:
   pull_request:
 
-name: build_singularity
+name: demo_container
 
 jobs:
-  build_singularity:
+  demo_container:
 
     runs-on: ubuntu-latest
     strategy:
@@ -22,6 +22,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Demo container
-        run: ./demo_container.sh
+      - name: Download container
+        run: singularity pull library://richelbilderbeek/default/plinkr:v0.15.1
+
+      - name: Show container help
+        run: singularity run-help plinkr_v0.15.1.sif
+
+      - name: Show container script
+        run: singularity inspect --deffile plinkr_v0.15.1.sif
+
+      - name: Run container
+        run: singularity run plinkr_v0.15.1.sif sh -c "Rscript demo_container.R"
 
