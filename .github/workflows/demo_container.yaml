@@ -35,5 +35,14 @@ jobs:
         run: ls
 
       - name: Run container
+        run: singularity run plinkr_v0.15.1.sif
+
+      - name: ls from container
+        run: singularity exec plinkr_v0.15.1.sif ls
+
+      - name: list.files from container
+        run: singularity exec plinkr_v0.15.1.sif Rscript -e "list.files()"
+
+      - name: Exec script
         run: singularity exec plinkr_v0.15.1.sif Rscript demo_container.R
 
