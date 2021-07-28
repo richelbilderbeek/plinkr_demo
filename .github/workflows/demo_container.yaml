@@ -31,6 +31,9 @@ jobs:
       - name: Show container script
         run: singularity inspect --deffile plinkr_v0.15.1.sif
 
+      - name: ls
+        run: ls
+
       - name: Run container
         run: singularity exec plinkr_v0.15.1.sif sh -c "Rscript demo_container.R"
 
